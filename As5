@@ -1,0 +1,91 @@
+Question 1
+
+Git and GitHub Basics Workflow
+ A. Clone any public repository
+ 1. Open terminal or command prompt.
+ 2. Use the command:
+   git clone https://github.com/username/repository-name.git
+ B. Create and modify a public repository
+ 1. Create a new repository on GitHub with a README.md file.
+ 2. Clone it to your machine:
+   git clone https://github.com/yourusername/your-repo.git
+ 3. Navigate to the repo folder:
+   cd your-repo
+ 4. Open README.md and update it with the purpose.
+ 5. Save the file and commit the changes:
+   git add README.md
+   git commit -m "Updated README with repo purpose"
+ C. Configure Git username and email
+ 1. Set global username:
+   git config --global user.name "Your Name"
+ 2. Set global email:
+   git config --global user.email "your.email@example.com"
+ D. Pull README.md from repository
+ 1. Make sure you're in the repository directory.
+ 2. Use the command:
+   git pull origin main
+E. Edit README.md and create index.html
+ 1. Edit the README.md file.
+ 2. Create a new index.html file.
+ 3. Add both files to staging:
+   git add README.md index.html
+ F. Push changes using upstream
+ 1. Commit the changes:
+   git commit -m "Edited README and added index.html"
+ 2. Push to GitHub with upstream:
+   git push --set-upstream origin main
+
+
+
+
+
+
+Question 2
+
+Branching, Merging, and Diffs Workflow
+ A. Initial Commits and Push to Main
+ 1. Add h1 tag in README.md and commit:
+   git add README.md
+   git commit -m "C0: Added h1 tag in README.md"
+ 2. Create a new .txt file and commit:
+   git add newfile.txt
+   git commit -m "C1: Created new txt file"
+ 3. Modify the txt file and commit:
+   git add newfile.txt
+   git commit -m "C2: Modified txt file"
+ 4. Push to main branch:
+   git push origin main
+ B. Create 'iss53' Branch and Diff Commands
+ 1. Create and switch to 'iss53' branch:
+   git checkout -b iss53
+ 2. Create index.html and update README.md, then commit:
+   git add index.html README.md
+   git commit -m "C3: Added index.html and updated README.md"
+ 3. View diff between commits C1 and C2:
+   git diff <C1_hash> <C2_hash>
+ 4. View diff between 'main' and 'iss53':
+   git diff main..iss53
+ 5. Push iss53 branch:
+   git push origin iss53
+C. Create and Push 'hotfix' Branch
+ 1. Create and switch to 'hotfix' branch:
+   git checkout -b hotfix
+ 2. Update txt file and commit:
+   git add newfile.txt
+   git commit -m "C4: Updated new txt file"
+ 3. Push hotfix branch:
+   git push origin hotfix
+ D. Merge 'hotfix' into 'main' and Delete Branch
+ 1. Switch to main branch:
+   git checkout main
+ 2. Merge hotfix into main:
+   git merge hotfix
+ 3. Delete hotfix branch:
+   git branch -d hotfix
+ E. Merge 'iss53' into 'main' and Delete Branch
+ 1. Make sure you're on main branch:
+   git checkout main
+ 2. Merge iss53 into main:
+   git merge iss53
+ 3. Delete iss53 branch:
+   git branch -d iss53
