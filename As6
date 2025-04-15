@@ -1,0 +1,60 @@
+##Docker-6
+
+1.sudo docker pull ubuntu:20.04
+2.sudo docker images
+3.sudo docker pull ubuntu:latest
+4.sudo docker images
+5.sudo docker rmi ubuntu:20.04
+6.sudo docker images
+7.sudo docker run -dit --name ubuntu-os ubuntu:latest
+8.sudo docker ps
+9.sudo docker ps -a
+10. sudo docker restart ubuntu-os
+11.sudo docker ps
+12.sudo docker ps -a
+13.sudo docker exec -d d0ee mkdir mydir1
+14.sudo docker exec -it d0ee /bin/bash
+15.ls
+16.sudo docker stop ubuntu-os
+17.sudo docker container prune -f
+18.sudo docker ps
+19.sudo docker ps -a
+20.sudo docker images
+21.sudo docker pull postgres
+22.sudo docker images
+23.sudo docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+24.sudo docker ps
+25.sudo docker ps -a
+26.sudo docker exec -it f624 /bin/bash
+27.sudo docker exec -it f624 psql -U postgres
+28. sudo docker stop f624
+29.sudo docker rm f624
+30.sudo docker ps
+31.sudo docker ps -a
+32.mkdir docker
+33.ls
+34.cd docker
+35.nano dockerfile
+   ->	FROM node:latest
+	WORKDIR /app
+	COPY server.js .
+	RUN npm install express
+	EXPOSE 3000
+	CMD ["node", "server.js"]
+36.vi server.js
+   ->  const express = require('express');
+	const app = express();
+
+	app.get('/', (req, res) => {
+    	res.send('Hello from Node.js inside Docker!');
+	});
+
+	app.listen(3000, () => {
+    	console.log('Server running on port 3000');
+	});
+37.ls -l
+38.sudo docker build -t mynodeapp .
+39.sudo docker run -d -p 3000:3000 --name mynodecontainer mynodeapp
+40.sudo docker tag mynodeapp 9022149046/mynodeapp:v1
+41.sudo docker login
+42. sudo docker push 9022149046/mynodeapp:v1
