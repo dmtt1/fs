@@ -1,0 +1,63 @@
+Question 1
+
+Manual Configuration for Apache2 with Sample Project on Ubuntu EC2 Instance
+ 1. Connect to the EC2 instance using SSH:
+   ssh -i <your-key.pem> ubuntu@<your-ec2-public-ip>
+ 2. Update the package list:
+   sudo apt update
+ 3. Install Apache2:
+   sudo apt install apache2 -y
+ 4. Download the sample project files:
+   wget https://example.com/sample-project.zip
+ 5. Install unzip if not already installed:
+   sudo apt install unzip -y
+ 6. Unzip the sample project files:
+   unzip sample-project.zip
+ 7. Move the extracted files to the Apache web directory:
+   sudo mv sample-project/* /var/www/html/
+ 8. Change ownership of the files to the www-data user:
+   sudo chown -R www-data:www-data /var/www/html/
+ 9. Restart Apache2 service:
+   sudo systemctl restart apache2
+ 10. Open a browser and enter the private IP address of the EC2 instance.
+    You should see the sample project page
+
+
+Question 2
+
+Step 1: Install Terraform
+ Download and install Terraform from: https://www.terraform.io/downloads
+ Step 2: Create a Project Directory
+ mkdir terraform-ec2-instance
+ cd terraform-ec2-instance
+ Step 3: Create a Terraform Configuration File (main.tf)
+ Paste the following code:
+ terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 4.0"
+    }
+  }
+  required_version = ">= 1.0"
+ }
+ provider "aws" {
+  region = "ap-south-1"
+ }
+ resource "aws_instance" "example" {
+  ami           = "ami-00bb6a80f"
+  instance_type = "t2.micro"
+  tags = {
+  }
+    Name = "ExampleAppServerInstance"
+ }
+ Step 4: Initialize Terraform
+ terraform init
+ Step 5: Review the Plan
+ terraform plan
+ Step 6: Apply the Configuration
+ terraform apply (type 'yes' to confirm)
+ Step 7: Check AWS Console
+ Verify the instance in ap-south-1 region
+ Step 8: Destroy the Instance (Optional)
+ terraform destroy
